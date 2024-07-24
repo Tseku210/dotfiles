@@ -1,9 +1,9 @@
 .DS_Store
 
-/tmux/plugins
+tmux/plugins/
 
-/flutter
+flutter/
 
-/gh
+gh/
 
-/gh-copilot
+gh-copilot/
