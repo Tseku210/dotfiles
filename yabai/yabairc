@@ -1,0 +1,56 @@
+yabai -m config layout bsp
+yabai -m config window_placement second_child
+
+# padding
+yabai -m config top_padding 0
+yabai -m config right_padding 0
+yabai -m config left_padding 0
+yabai -m config bottom_padding 0 
+yabai -m config window_gap 4
+
+# mouse settings
+yabai -m config mouse_follows_focus on
+yabai -m config mouse_modifier alt
+
+# set modifier + left-click drag to move window (default: move)
+yabai -m config mouse_action1 move
+
+# set modifier + right-click drag to resize window (default: resize)
+yabai -m config mouse_action2 resize
+
+yabai -m mouse_drop_action swap
+
+# modify window shadows (default: on, options: on, off, float)
+# example: show shadows only for floating windows
+yabai -m config window_shadow float
+
+# window opacity (default: off)
+# example: render all unfocused windows with 90% opacity
+yabai -m config window_opacity on
+yabai -m config active_window_opacity 1.0
+yabai -m config normal_window_opacity 0.9
+
+# disable specific apps
+yabai -m rule --add app="^System Settings$" manage=off
+yabai -m rule --add app="^Calculator$" manage=off
+yabai -m rule --add app="^Karabiner-Elements$" manage=off
+yabai -m rule --add app="^Finder$" manage=off
+yabai -m rule --add app="^Books$" manage=off
+yabai -m rule --add app="^Day One$" manage=off
+yabai -m rule --add app="^Viber$" manage=off
+yabai -m rule --add app="^Notes$" manage=off
+yabai -m rule --add app="^Viber$" manage=off
+yabai -m rule --add app="^Telegram$" manage=off
+
+# app specific rules
+yabai -m rule --add app="^(Google Chrome|Firefox Developer Edition|Safari|Arc)$" space=1
+# text editor
+yabai -m rule --add app="^(Code|Xcode)$" space=2
+# Terminal
+yabai -m rule --add app="^(iTerm2)$" space=3
+# postman
+yabai -m rule --add app="^(Postman)$" space=5
+# Social
+yabai -m rule --add app="^(Slack|WhatsApp|Microsoft Teams)$" space=6
+# note
+yabai -m rule --add app="^(Obsidian|Notion)$" space=4
