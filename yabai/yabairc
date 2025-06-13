@@ -2,10 +2,10 @@ yabai -m config layout bsp
 yabai -m config window_placement second_child
 
 # padding
-yabai -m config top_padding 0
-yabai -m config right_padding 0
-yabai -m config left_padding 0
-yabai -m config bottom_padding 0 
+yabai -m config top_padding 10
+yabai -m config right_padding 10
+yabai -m config left_padding 10
+yabai -m config bottom_padding 10 
 yabai -m config window_gap 4
 
 # mouse settings
@@ -42,15 +42,17 @@ yabai -m rule --add app="^Notes$" manage=off
 yabai -m rule --add app="^Viber$" manage=off
 yabai -m rule --add app="^Telegram$" manage=off
 
-# app specific rules
+# App specific rules
 yabai -m rule --add app="^(Google Chrome|Firefox Developer Edition|Safari|Arc)$" space=1
-# text editor
+# Text editor
 yabai -m rule --add app="^(Code|Xcode)$" space=2
 # Terminal
 yabai -m rule --add app="^(iTerm2)$" space=3
-# postman
-yabai -m rule --add app="^(Postman)$" space=5
+# Postman
+yabai -m rule --add app="^(Postman|Figma)$" space=5
 # Social
 yabai -m rule --add app="^(Slack|WhatsApp|Microsoft Teams)$" space=6
-# note
+# Note
 yabai -m rule --add app="^(Obsidian|Notion)$" space=4
+# Tools
+yabai -m rule --add app="^(DevToys)$" space=7

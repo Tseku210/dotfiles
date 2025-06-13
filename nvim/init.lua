@@ -1,2 +1,2 @@
-require('tseku.core')
-require('tseku.lazy')
+-- bootstrap lazy.nvim, LazyVim and your plugins
+require("config.lazy")
