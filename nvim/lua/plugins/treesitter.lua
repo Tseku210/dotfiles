@@ -1,8 +1,10 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   opts = function(_, opts)
-    vim.list_extend(opts.ensure_installed, {
-      "dart",
-    })
+    vim.list_extend(opts.ensure_installed, { "dart" })
+    opts.indent = {
+      disable = { "dart" },
+      enable = true,
+    }
   end,
 }

@@ -81,3 +81,14 @@ vim.opt.wrap = true -- Enable wrapping
 vim.opt.linebreak = true -- Break lines by word rather than character
 vim.opt.textwidth = 0 -- Disable automatic line breaking
 vim.opt.wrapmargin = 0 -- Disable automatic margin wrapping
+
+-- LSP Server to use for Python.
+-- Set to "basedpyright" to use basedpyright instead of pyright.
+vim.g.lazyvim_python_lsp = "pyright"
+-- Set to "ruff_lsp" to use the old LSP implementation version.
+vim.g.lazyvim_python_ruff = "ruff"
+-- LSP Server to use for Rust.
+-- Set to "bacon-ls" to use bacon-ls instead of rust-analyzer.
+-- only for diagnostics. The rest of LSP support will still be
+-- provided by rust-analyzer.
+vim.g.lazyvim_rust_diagnostics = "rust-analyzer"
