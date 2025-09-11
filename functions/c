@@ -1,0 +1,4 @@
+#!/bin/zsh
+#
+# Jump to a project directory underneath ~/Code.
+cd "$PROJECTS/$1"

@@ -1,0 +1,31 @@
+#!/bin/bash
+set -eu
+
+bold=$(tput bold)
+green=$(tput setaf 2)
+normal=$(tput sgr0)
+
+title() {
+  echo "${bold}==> $1${normal}"
+  echo
+}
+
+indent() {
+  sed 's/^/  /'
+}
+
+# Install TPM (Tmux Plugin Manager)
+title "Installing Tmux Plugin Manager..."
+if [ ! -d ~/.tmux/plugins/tpm ]; then
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+  echo "TPM installed successfully!" | indent
+else
+  echo "TPM already installed, skipping..." | indent
+fi
+echo
+
+# Install other plugins here if needed
+# title "Installing other plugins..."
+# ... other plugin installations
+
+echo "${green}All plugins installed!${normal}" | indent

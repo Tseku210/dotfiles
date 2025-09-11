@@ -1,0 +1,62 @@
+font-family = TX-02
+font-size = 14
+
+# Cursor Dark Midnight
+background = #191C21
+foreground = #D8DEE9
+cursor-color = #8FBCBA
+# selection-background = #272C36
+palette = 0=#272C36
+palette = 1=#BF616A
+palette = 2=#A3BE8C
+palette = 3=#EBCB8B
+palette = 4=#80A1C1
+palette = 5=#7D7C9C
+palette = 6=#88C1D0
+palette = 7=#E5E9F0
+palette = 8=#4C566A
+palette = 9=#BF616A
+palette = 10=#A3BE8C
+palette = 11=#EBCB8B
+palette = 12=#80A1C1
+palette = 13=#B48DAD
+palette = 14=#8FBCBA
+palette = 15=#EBEFF4
+
+# GitHub Dark, customized
+# theme = GitHub Dark
+# background = #24282c
+# foreground = #fafafb
+# palette = 0=#1d1f21
+# palette = 1=#c5474e
+# palette = 2=#68cd66
+# palette = 3=#d4ac3a
+# palette = 4=#4386f6
+# palette = 5=#d856a6
+# palette = 6=#6ae1e4
+# palette = 7=#feffff
+# palette = 8=#686767
+# palette = 9=#c6474e
+# palette = 10=#9ce5a3
+# palette = 11=#d3ac3a
+# palette = 12=#4386f6
+# palette = 13=#d856a6
+# palette = 14=#6ae1e4
+# palette = 15=#feffff
+
+window-padding-x = 15
+window-padding-y = 10
+
+keybind = option+super+left=previous_tab
+keybind = option+super+right=next_tab
+keybind = super+f=write_screen_file:open
+keybind = shift+enter=text:\n
+
+macos-titlebar-style = tabs
+macos-icon = xray
+
+working-directory = home
+window-inherit-working-directory = false
+window-new-tab-position = end
+
+shell-integration-features = true

@@ -1,0 +1,17 @@
+#!/bin/sh
+
+if [ -z "$1" ]; then
+  git branch
+else
+  local_branch=$(git branch --list $1)
+  if ! [ -z "$local_branch" ]; then
+    exec git switch "$1"
+  fi
+
+  remote_branch=$(git ls-remote --heads origin $1)
+  if ! [ -z "$remote_branch" ]; then
+    exec git switch "$1"
+  fi
+
+  exec git switch -c "$1"
+fi

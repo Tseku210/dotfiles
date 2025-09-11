@@ -1,0 +1,21 @@
+[alias]
+	co = checkout
+	ca = !git add -A && git commit -av
+[color]
+	branch = auto
+	diff = auto
+	status = auto
+	ui = true
+[core]
+	editor = nvim
+[help]
+	autocorrect = 1
+[init]
+	defaultBranch = main
+[pull]
+	rebase = true
+[push]
+	default = simple
+[user]
+	name = AUTHORNAME
+	email = AUTHOREMAIL
