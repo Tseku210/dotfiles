@@ -9,6 +9,7 @@ return {
         "shfmt",
         "tailwindcss-language-server",
         "typescript-language-server",
+        "astro-language-server",
         "css-lsp",
       })
     end,
@@ -21,6 +22,7 @@ return {
       inlay_hints = { enabled = false },
       ---@type lspconfig.options
       servers = {
+        astro = {},
         vtsls = {
           enabled = false,
         },
@@ -31,6 +33,14 @@ return {
           end,
         },
         ts_ls = {
+          filetypes = {
+            "javascript",
+            "javascriptreact",
+            "javascript.jsx",
+            "typescript",
+            "typescriptreact",
+            "typescript.tsx",
+          },
           root_dir = function(...)
             return require("lspconfig.util").root_pattern(".git")(...)
           end,

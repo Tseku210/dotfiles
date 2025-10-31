@@ -1,5 +1,5 @@
 if (( $+commands[pnpm] )); then
-  export PNPM_HOME="/Users/jacobwgillespie/Library/pnpm"
+  export PNPM_HOME="/Users/tsekushi/Library/pnpm"
   export PATH="$PNPM_HOME:$PATH"
 fi
 
