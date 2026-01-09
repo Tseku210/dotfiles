@@ -7,7 +7,7 @@ return {
   },
   config = function()
     require("flutter-tools").setup({
-      flutter_path = "/Users/tsekuu/dev/sdk/flutter/bin/flutter",
+      flutter_path = "/opt/homebrew/bin/flutter",
       flutter_lookup_cmd = nil,
       fvm = false,
       widget_guides = { enabled = true },

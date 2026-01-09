@@ -24,7 +24,7 @@ return {
       servers = {
         astro = {},
         vtsls = {
-          enabled = false,
+          enabled = true,
         },
         cssls = {},
         tailwindcss = {
@@ -72,7 +72,7 @@ return {
         },
         html = {},
         lua_ls = {
-          -- enabled = false,
+          enabled = false,
           single_file_support = true,
           settings = {
             Lua = {

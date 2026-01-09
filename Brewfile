@@ -59,7 +59,7 @@ brew 'zsh-completions'
 brew 'zsh-history-substring-search'
 brew 'zsh-syntax-highlighting'
 brew 'oven-sh/bun/bun'
-brew 'stats'
+brew 'acsandmann/tap/rift'
 
 # Only install on macOS
 if /darwin/ =~ RUBY_PLATFORM
@@ -89,6 +89,7 @@ if /darwin/ =~ RUBY_PLATFORM
   cask 'spotify'
   cask 'yaak'
   cask 'zoom'
+  cask 'stats'
 
   # Fonts
   cask 'font-hack-nerd-font'

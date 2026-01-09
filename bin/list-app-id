@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# list_app_ids.sh — prints all macOS app bundle IDs
+
+find /Applications ~/Applications -name "*.app" -type d 2>/dev/null | while read app; do
+  id=$(defaults read "$app/Contents/Info" CFBundleIdentifier 2>/dev/null)
+  if [ -n "$id" ]; then
+    echo "$id"
+  fi
+done

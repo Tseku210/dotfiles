@@ -1,0 +1,10 @@
+#!/bin/bash
+
+APP_NAME="$1"
+
+if [ -z "$APP_NAME" ]; then
+  echo "Usage: $0 \"App Name\""
+  exit 1
+fi
+
+osascript -e "id of app \"$APP_NAME\""
