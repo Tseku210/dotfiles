@@ -3,7 +3,7 @@ return {
   opts = function(_, opts)
     vim.list_extend(opts.ensure_installed, { "dart" })
     opts.indent = {
-      disable = { "dart" },
+      disable = { "dart", "markdown" },
       enable = true,
     }
   end,

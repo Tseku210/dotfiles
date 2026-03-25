@@ -14,7 +14,7 @@ after-startup-command = []
 # Start AeroSpace at login
 start-at-login = true
 
-# Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
+
 enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
 
@@ -58,11 +58,11 @@ preset = 'qwerty'
 #                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
 inner.horizontal = 10
-inner.vertical =   10
-outer.left =       10
-outer.bottom =     10
-outer.top =        10
-outer.right =      10
+inner.vertical = 10
+outer.left = 10
+outer.bottom = 10
+outer.top = 10
+outer.right = 10
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -195,7 +195,10 @@ alt-shift-semicolon = 'mode service'
 [mode.service.binding]
 esc = ['reload-config', 'mode main']
 r = ['flatten-workspace-tree', 'mode main'] # reset layout
-f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
+f = [
+  'layout floating tiling',
+  'mode main',
+] # Toggle between floating and tiling layout
 backspace = ['close-all-windows-but-current', 'mode main']
 
 # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
@@ -208,6 +211,10 @@ alt-shift-l = ['join-with right', 'mode main']
 
 [[on-window-detected]]
 if.app-id = 'app.zen-browser.zen'
+run = "move-node-to-workspace B"
+
+[[on-window-detected]]
+if.app-id = 'com.brave.Browser'
 run = "move-node-to-workspace B"
 
 [[on-window-detected]]
@@ -243,7 +250,7 @@ if.app-id = 'com.tinyspeck.slackmacgap'
 run = "move-node-to-workspace S"
 
 [[on-window-detected]]
-if.app-id = 'com.openai.chat'
+if.app-id = 'com.anthropic.claudefordesktop'
 run = "move-node-to-workspace C"
 
 [[on-window-detected]]
@@ -253,6 +260,7 @@ run = "layout floating"
 [[on-window-detected]]
 if.app-id = 'com.viber.osx'
 run = "layout floating"
+
 
 [[on-window-detected]]
 if.app-id = 'com.apple.finder'
