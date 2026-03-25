@@ -24,14 +24,52 @@ The `Brewfile` installs all of the software and applications I have installed on
 
 ## Structure
 
-The repository is organized as follows:
-
 - `setup` - setup script that can be used to install or update the dotfiles on your system
 - `Brewfile` - a list of software to install via Homebrew (see `brew bundle` and `brew bundle cleanup`)
-- `bin/*` - any executable scripts in this directory are added to your `$PATH`
-- `config/*.zsh` - configuration files for ZSH, they are all sourced automatically into any new shell
-- `functions/*` - zsh functions and autocomplete completion definitions
-- `symlinks/*` - any files ending in `*.symlink` get symlinked by the `./setup` script into your home directory with the suffix removed (e.g. `gitignore.symlink` becomes `~/.gitignore`)
+- `bin/*` - executable scripts added to your `$PATH`
+- `config/*.zsh` - ZSH configuration files, sourced automatically into any new shell
+- `functions/*` - ZSH functions and tab-completion definitions
+- `symlinks/*` - files ending in `*.symlink` get symlinked into your home directory with the suffix removed (e.g. `gitignore.symlink` becomes `~/.gitignore`)
+- `scripts/*` - setup helper scripts (macOS config, symlinks, plugin installation)
+
+## Custom Commands
+
+| Command | Description |
+|---------|-------------|
+| `+x` | Make a file executable |
+| `b` | Git branch switcher (list, switch, or create) |
+| `c` | Quick jump to a project in `~/dev/` |
+| `dot` | Navigate to the dotfiles directory |
+| `e` | Open Cursor editor |
+| `extract` | Extract any archive (tar, gz, zip, dmg, etc.) |
+| `git-tidy` | Delete local branches merged into HEAD |
+| `git-track` | Set current branch to track its remote |
+| `git-undo` | Undo the last commit, keeping changes staged |
+| `github-email` | Look up a GitHub user's email |
+| `get-app-id` | Get a macOS app's bundle ID |
+| `ips` | Show remote and local IP addresses |
+| `key` | Generate or copy SSH keys |
+| `license` | Print an MIT license with the current year |
+| `list-app-id` | List all installed macOS app bundle IDs |
+| `pr` | GitHub PR helper (list or checkout PRs) |
+| `search` | Case-insensitive search with ack |
+| `y` | Launch yazi and cd to its exit directory |
+
+## Shell Aliases
+
+| Alias | Description |
+|-------|-------------|
+| `g` | `git` |
+| `gs` | `git status` |
+| `gp` | `git push` |
+| `gpf` | `git push --force-with-lease` |
+| `glog` | Pretty git log |
+| `s` | `git sync` |
+| `vim` | `nvim` |
+| `clr` | Clear terminal |
+| `flush` | Flush DNS cache |
+| `cleanup` | Remove `.DS_Store` files recursively |
+| `loadenv` | Source a `.env` file |
 
 ## License
 
