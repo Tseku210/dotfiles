@@ -10,7 +10,7 @@ indent() {
 
 echo
 echo "${bold}Remote IP${normal}"
-dig +short myip.opendns.com @resolver1.opendns.com | indent
+(curl -s --max-time 3 https://ifconfig.me 2>/dev/null || echo "timed out") | indent
 echo
 
 echo "${bold}Local IPs${normal}"
