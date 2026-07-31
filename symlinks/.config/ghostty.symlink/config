@@ -1,6 +1,10 @@
 font-family = TX-02
 font-size = 14
 
+background-image = background.jpg
+background-image-fit = cover
+background-image-opacity = 0.15
+
 # Cursor Dark Midnight
 background = #191C21
 foreground = #D8DEE9
@@ -52,7 +56,7 @@ keybind = option+super+right=next_tab
 keybind = super+f=write_screen_file:open
 keybind = shift+enter=text:\n
 
-macos-titlebar-style = tabs
+macos-titlebar-style = hidden
 macos-icon = xray
 
 working-directory = home
