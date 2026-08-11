@@ -1,22 +1,14 @@
 # Taps
-tap 'aws/tap'
-tap 'cloudflare/cloudflare'
-tap 'github/gh'
 tap 'oven-sh/bun'
 
 # Formulae
-brew 'ack'
-brew 'aws-vault'
-brew 'awscli'
-# brew 'awsdac' # AWS Diagram as tool for drawing diagrams
+brew 'agent-browser' # browser automation CLI for AI agents
 brew 'bash'
 brew 'bash-completion'
 brew 'bat'
-# brew 'bazel' # build tool google
 brew 'biome'
 brew 'cloudflared'
 brew 'coreutils'
-brew 'deno'
 brew 'diffutils'
 brew 'eza'
 brew 'fd'
@@ -27,28 +19,24 @@ brew 'git'
 brew 'git-delta'
 brew 'grc'
 brew 'grep'
-brew 'httpie'
 brew 'htop'
 brew 'imagemagick'
 brew 'jq'
+brew 'lazygit'
 brew 'mise'
 brew 'neovim'
 brew 'node'
 brew 'openssh'
-brew 'openjdk'
+brew 'openjdk' # flutter android builds
 brew 'pnpm'
-brew 'rbenv'
-# brew 'redis'
+brew 'pyenv'
 brew 'ripgrep'
 brew 'ruff'
-brew 'rustup'
 brew 'tmux'
 brew 'starship'
 brew 'uv'
 brew 'wget'
-brew 'wrk'
 brew 'xh'
-brew 'yarn'
 brew 'yazi'
 brew 'yq'
 brew 'yt-dlp'
@@ -63,51 +51,26 @@ brew 'acsandmann/tap/rift'
 
 # Only install on macOS
 if /darwin/ =~ RUBY_PLATFORM
-  # Formulae
+  # Casks
+  cask 'brave-browser'
   cask 'cursor'
-  cask 'dbngin'
   cask 'docker-desktop'
-  cask 'dynobase'
+  cask 'flutter'
   cask 'ghostty'
-  cask 'github'
-  cask 'zen'
-  cask 'handbrake' # video transcoder
-  cask 'imageoptim' # image optimizer
-  cask 'iterm2'
-  cask 'kap'
-  cask 'linear-linear'
-  cask 'ngrok'
-  cask 'nosql-workbench'
-  cask 'notion'
-  cask 'notion-calendar'
-  cask 'proxyman'
-  cask 'raycast'
-  cask 'session-manager-plugin' # AWS Session Manager
+  cask 'neovide-app' # GUI neovim; handles "open in nvim" from Finder
   cask 'nikitabobko/tap/aerospace'
-  cask 'slack'
   cask 'obsidian'
+  cask 'raycast'
+  cask 'slack'
   cask 'spotify'
-  cask 'yaak'
-  cask 'zoom'
   cask 'stats'
+  cask 'zen'
 
   # Fonts
   cask 'font-hack-nerd-font'
   cask 'font-fira-code'
   cask 'font-jetbrains-mono'
-  # cask 'font-hasklig'
-  # cask 'font-inter'
-  # cask 'font-iosevka'
-  # cask 'font-office-code-pro'
-  # cask 'font-outfit'
-  # cask 'font-red-hat-display'
-  # cask 'font-red-hat-mono'
-  # cask 'font-red-hat-text'
-  # cask 'font-source-code-pro'
-
-  # Mac App Store Applications
-  # mas '1Blocker', id: 1365531024
-  # mas 'Xcode', id: 497799835
+  cask 'font-jetbrains-mono-nerd-font'
 
   # Cursor extensions
   vscode 'anthropic.claude-code'
