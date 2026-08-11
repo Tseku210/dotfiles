@@ -1,23 +1,16 @@
 return {
   "nvim-flutter/flutter-tools.nvim",
-  lazy = false,
-  dependencies = {
-    "nvim-lua/plenary.nvim",
-    "stevearc/dressing.nvim", -- optional for vim.ui.select
+  ft = "dart", -- only load when editing Dart, never at startup
+  dependencies = { "nvim-lua/plenary.nvim" },
+  opts = {
+    flutter_path = "/opt/homebrew/bin/flutter",
+    widget_guides = { enabled = true },
+    debugger = {
+      enabled = true,
+      register_configurations = function(_)
+        require("dap").configurations.dart = {}
+        require("dap.ext.vscode").load_launchjs()
+      end,
+    },
   },
-  config = function()
-    require("flutter-tools").setup({
-      flutter_path = "/opt/homebrew/bin/flutter",
-      flutter_lookup_cmd = nil,
-      fvm = false,
-      widget_guides = { enabled = true },
-      debugger = {
-        enabled = true,
-        register_configurations = function(_)
-          require("dap").configurations.dart = {}
-          require("dap.ext.vscode").load_launchjs()
-        end,
-      },
-    })
-  end,
 }
