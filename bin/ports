@@ -1,0 +1,137 @@
+#!/bin/bash
+#
+# List TCP listening ports and kill leftover dev servers (the ones Claude
+# sessions tend to leave behind).
+#
+#   ports                  list everything listening (dev servers marked ●)
+#   ports kill <port>...   kill whatever is listening on the given port(s)
+#   ports killall          kill all dev servers, after confirming
+#   ports killall -f       same, without asking
+#
+# A "dev server" is a process you own whose command matches DEV_RE below.
+# System daemons and regular apps are listed but never touched by killall.
+
+bold=$(tput bold 2>/dev/null)
+normal=$(tput sgr0 2>/dev/null)
+dim=$(tput dim 2>/dev/null)
+green=$(tput setaf 2 2>/dev/null)
+
+DEV_RE='^(node|next-server.*|bun|deno|tsx|ts-node|vite|nodemon|npm|pnpm|yarn|python[0-9.]*|uvicorn|gunicorn|flask|ruby|puma|rails|php(-fpm)?|java|go|air|cargo|wrangler|workerd|esbuild|webpack|turbopack|http-server|live-server|serve|caddy|storybook|astro|mkdocs|hugo|jekyll|dart|flutter)$'
+
+# One line per listener: "port<TAB>pid<TAB>user<TAB>command", sorted by port.
+listeners() {
+  lsof -iTCP -sTCP:LISTEN -P -n -FpcLn 2>/dev/null | awk '
+    /^p/ {pid=substr($0,2)}
+    /^c/ {cmd=substr($0,2)}
+    /^L/ {user=substr($0,2)}
+    /^n/ {port=substr($0,2); sub(/.*:/,"",port); print port "\t" pid "\t" user "\t" cmd}
+  ' | sort -n | uniq
+}
+
+is_dev() { # is_dev <user> <command>
+  [ "$1" = "$USER" ] || return 1
+  shopt -s nocasematch
+  [[ "$2" =~ $DEV_RE ]]
+  local ok=$?
+  shopt -u nocasematch
+  return $ok
+}
+
+print_rows() { # reads listener lines on stdin
+  printf "  ${bold}%-7s %-7s %-22s %s${normal}\n" "PORT" "PID" "COMMAND" "USER"
+  while IFS=$'\t' read -r port pid user cmd; do
+    local mark=" "
+    is_dev "$user" "$cmd" && mark="${green}●${normal}"
+    printf "%b %-7s %-7s %-22s %s\n" "$mark" "$port" "$pid" "$cmd" "$user"
+  done
+}
+
+# kill_pids <pid>... — TERM first, escalate to KILL for survivors.
+kill_pids() {
+  kill "$@" 2>/dev/null
+  local i pid alive
+  for i in 1 2 3 4 5; do
+    sleep 0.2
+    alive=""
+    for pid in "$@"; do
+      kill -0 "$pid" 2>/dev/null && alive="$alive $pid"
+    done
+    [ -z "$alive" ] && return 0
+  done
+  echo "force-killing stubborn pid(s):$alive"
+  kill -9 $alive 2>/dev/null
+  return 0
+}
+
+cmd_list() {
+  local rows
+  rows=$(listeners)
+  if [ -z "$rows" ]; then
+    echo "Nothing listening."
+    return
+  fi
+  echo
+  print_rows <<< "$rows"
+  echo
+  echo "${dim}● dev server — 'ports killall' kills these; 'ports kill <port>' kills anything${normal}"
+}
+
+cmd_kill() {
+  if [ $# -eq 0 ]; then
+    echo "usage: ports kill <port> [port...]" >&2
+    exit 1
+  fi
+  local rows port matches pids
+  rows=$(listeners)
+  pids=""
+  for port in "$@"; do
+    matches=$(awk -F'\t' -v p="$port" '$1==p' <<< "$rows")
+    if [ -z "$matches" ]; then
+      echo "port $port: nothing listening"
+      continue
+    fi
+    while IFS=$'\t' read -r _ pid user cmd; do
+      echo "killing $cmd (pid $pid) on port $port"
+      pids="$pids $pid"
+    done <<< "$matches"
+  done
+  pids=$(tr ' ' '\n' <<< "$pids" | sort -u | grep . || true)
+  if [ -n "$pids" ]; then
+    kill_pids $pids
+  fi
+}
+
+cmd_killall() {
+  local force=false
+  [ "$1" = "-f" ] || [ "$1" = "--yes" ] && force=true
+  local rows targets pids ans
+  rows=$(listeners)
+  targets=""
+  while IFS=$'\t' read -r port pid user cmd; do
+    is_dev "$user" "$cmd" && targets="$targets$port"$'\t'"$pid"$'\t'"$user"$'\t'"$cmd"$'\n'
+  done <<< "$rows"
+  targets=$(grep . <<< "$targets" || true)
+  if [ -z "$targets" ]; then
+    echo "No dev servers listening."
+    return
+  fi
+  echo
+  print_rows <<< "$targets"
+  echo
+  if ! $force; then
+    printf "Kill all of the above? [y/N] "
+    read -r ans
+    case "$ans" in y|Y|yes|YES) ;; *) echo "aborted"; exit 1 ;; esac
+  fi
+  pids=$(cut -f2 <<< "$targets" | sort -u)
+  kill_pids $pids
+  echo "done"
+}
+
+case "${1:-}" in
+  ""|list|ls)   cmd_list ;;
+  kill)         shift; cmd_kill "$@" ;;
+  killall|ka)   shift; cmd_killall "${1:-}" ;;
+  -h|--help)    sed -n '2,12p' "$0" | sed 's/^# \{0,1\}//' ;;
+  *)            echo "unknown command: $1 (try: ports, ports kill <port>, ports killall)" >&2; exit 1 ;;
+esac
