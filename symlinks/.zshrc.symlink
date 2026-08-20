@@ -128,3 +128,5 @@ eval "$(pyenv init - zsh)"
 
 # Flutterfire
 export PATH="$PATH":"$HOME/.pub-cache/bin"
+
+crmsession() { bash "$HOME/.claude/scripts/claude-rm-session.sh" "$@"; }
